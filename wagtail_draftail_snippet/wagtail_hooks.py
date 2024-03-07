@@ -37,6 +37,10 @@ def register_snippet_link_feature(features):
         "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
     ]
 
+    # In WT3 and earlier, SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS exists. In later versions, we need to define it.
+    if WAGTAIL_MAJOR_VERSION >= 4:
+        js_include.append("wagtail_draftail_snippet/js/snippet-model-chooser-modal.js")
+
     features.register_editor_plugin(
         "draftail",
         feature_name,
@@ -68,7 +72,7 @@ def register_snippet_embed_feature(features):
 
     # In WT3 and earlier, SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS exists. In later versions, we need to define it.
     if WAGTAIL_MAJOR_VERSION >= 4:
-        js_include.append("wagtail_draftail_snippet/js/snippet-chooser-modal.js")
+        js_include.append("wagtail_draftail_snippet/js/snippet-model-chooser-modal.js")
 
     features.register_editor_plugin(
         "draftail",
