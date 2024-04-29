@@ -98,6 +98,7 @@ ContentstateSnippetLinkConversionRule = {
 # Snippet Embed
 
 # Front-end conversion
+# Based on https://github.com/wagtail/wagtail/blob/7c6187f06c82d29f75fcf0a31b45f23f1b20f370/wagtail/embeds/rich_text/__init__.py#L9
 class SnippetEmbedHandler(EmbedHandler):
     # Note and EmbedHandler is a EntityHandler, An 'entity' is a placeholder tag within the saved rich text, which
     # needs to be rewritten into real HTML at the point of rendering.

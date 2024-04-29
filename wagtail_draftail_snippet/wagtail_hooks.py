@@ -32,7 +32,7 @@ def register_snippet_link_feature(features):
     # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
     js_include = [
         "wagtailadmin/js/chooser-modal.js",
-        "wagtailsnippets/js/snippet-chooser-modal.js", # not present in wagtail >=v4
+        "wagtailsnippets/js/snippet-chooser-modal.js",  # not present in wagtail >=v4
         "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
     ]
 
@@ -61,24 +61,28 @@ def register_snippet_embed_feature(features):
     feature_name = "snippet-embed"
     type_ = "SNIPPET-EMBED"
 
-    # Defines a handler for converting:
-    # db saved content, e.g. <embed app-name="xyz" content-type-name="abcd" embedtype="snippet" id="2"/>
+    # Defines a handler for converting db saved content,
+    # e.g. <embed app-name="xyz" content-type-name="abcd" embedtype="snippet" id="2"/>
     # into frontend HTML
     features.register_embed_type(SnippetEmbedHandler)
 
+    # todo prob need to add this...
+    # # define how to convert between editorhtml's representation of embeds and
+    # # the database representation
+    # features.register_converter_rule(
+    #     "editorhtml", "embed", EditorHTMLEmbedConversionRule
+    # )
+
     js_include = [
-        # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
-        "wagtailadmin/js/chooser-modal.js",
-    # TODO find out if any of the following are needed
-    #     "wagtailsnippets/js/snippet-chooser-modal.js",
-    #     "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
+        "wagtailadmin/js/chooser-modal.js",  # is needed for window.ChooserModalOnloadHandlerFactory
+        # "wagtailsnippets/js/snippet-chooser-modal.js", # doesn't exist in Wagtail 5.2
+        "wagtail_draftail_snippet/js/snippet-model-chooser-modal.js", # onload handlers
+        "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js", # draftail choosers, Interfaces with Wagtail's ModalWorkflow
     ]
 
     # In WT3 and earlier, SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS exists. In later versions, we need to define it.
     if WAGTAIL_MAJOR_VERSION >= 4:
-        js_include.append("wagtail_draftail_snippet/js/snippet-model-chooser-modal.js")
-    else:
-        js_include.append("wagtail_draftail_snippet/js/snippet-model-chooser.js")
+        js_include.append("wagtail_draftail_snippet/js/snippet-chooser-modal.js")
 
     features.register_editor_plugin(
         "draftail",
