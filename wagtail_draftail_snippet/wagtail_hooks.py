@@ -66,14 +66,13 @@ def register_snippet_embed_feature(features):
     # into frontend HTML
     features.register_embed_type(SnippetEmbedHandler)
 
-    # # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
     js_include = [
-        # TODO find out if any of the following are needed
-    ]
-    #     "wagtailadmin/js/chooser-modal.js",
+        # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
+        "wagtailadmin/js/chooser-modal.js",
+    # TODO find out if any of the following are needed
     #     "wagtailsnippets/js/snippet-chooser-modal.js",
     #     "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
-    # ]
+    ]
 
     # In WT3 and earlier, SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS exists. In later versions, we need to define it.
     if WAGTAIL_MAJOR_VERSION >= 4:
