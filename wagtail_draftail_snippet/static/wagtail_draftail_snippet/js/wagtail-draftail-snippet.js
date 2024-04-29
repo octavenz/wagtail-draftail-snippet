@@ -203,7 +203,7 @@
     const { entity, onRemoveEntity, entityKey } = props.blockProps;
     const data = entity.getData();
 
-    let icon = React.createElement(window.wagtail.components.Icon, {name: 'snippet'});
+    let icon = React.createElement(window.wagtail.components.Icon, {name: 'snippet-embed'});
     let label = data.string || '';
 
     return React.createElement("div", {
