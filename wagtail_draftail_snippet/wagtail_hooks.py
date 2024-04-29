@@ -61,6 +61,9 @@ def register_snippet_embed_feature(features):
     feature_name = "snippet-embed"
     type_ = "SNIPPET-EMBED"
 
+    # Defines a handler for converting:
+    # db saved content, e.g. <embed app-name="xyz" content-type-name="abcd" embedtype="snippet" id="2"/>
+    # into frontend HTML
     features.register_embed_type(SnippetEmbedHandler)
 
     # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
