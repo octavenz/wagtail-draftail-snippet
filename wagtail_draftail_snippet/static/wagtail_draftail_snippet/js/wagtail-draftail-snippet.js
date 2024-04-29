@@ -199,6 +199,7 @@
   };
 
   const SnippetEmbed = props => {
+    // How the contentstate in the editor renders the snippetembed
     const { entity, onRemoveEntity, entityKey } = props.blockProps;
     const data = entity.getData();
 

@@ -32,7 +32,7 @@ def register_snippet_link_feature(features):
     # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
     js_include = [
         "wagtailadmin/js/chooser-modal.js",
-        "wagtailsnippets/js/snippet-chooser-modal.js",
+        "wagtailsnippets/js/snippet-chooser-modal.js", # not present in wagtail >=v4
         "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
     ]
 
@@ -66,12 +66,14 @@ def register_snippet_embed_feature(features):
     # into frontend HTML
     features.register_embed_type(SnippetEmbedHandler)
 
-    # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
+    # # wagtailadmin/js/chooser-modal.js is needed for window.ChooserModalOnloadHandlerFactory
     js_include = [
-        "wagtailadmin/js/chooser-modal.js",
-        "wagtailsnippets/js/snippet-chooser-modal.js",
-        "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
+        # TODO find out if any of the following are needed
     ]
+    #     "wagtailadmin/js/chooser-modal.js",
+    #     "wagtailsnippets/js/snippet-chooser-modal.js",
+    #     "wagtail_draftail_snippet/js/wagtail-draftail-snippet.js",
+    # ]
 
     # In WT3 and earlier, SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS exists. In later versions, we need to define it.
     if WAGTAIL_MAJOR_VERSION >= 4:
@@ -83,11 +85,17 @@ def register_snippet_embed_feature(features):
         "draftail",
         feature_name,
         draftail_features.EntityFeature(
-            {"type": type_, "icon": "code", "description": gettext("Snippet Embed")},
+            {
+                "type": type_,
+                "icon": "code",
+                "description": gettext("Snippet Embed")
+            },
             js=js_include,
         ),
     )
 
+    # Define how to convert between contentstate's representation of embeds and
+    # the database representation
     features.register_converter_rule(
         "contentstate", feature_name, ContentstateSnippetEmbedConversionRule
     )
