@@ -106,10 +106,7 @@ class SnippetEmbedHandler(EmbedHandler):
 
     @classmethod
     def get_instance(cls, attrs):
-        print('GETTING "data-app-name: ', attrs["data-app-name"])
-        print('GETTING "data-model-name: ', attrs["data-model-name"])
         model = apps.get_model(attrs["data-app-name"], attrs["data-model-name"])
-        print('GETTING using model: ', model)
         return model.objects.get(id=attrs["id"])
 
     @classmethod
