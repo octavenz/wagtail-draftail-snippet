@@ -207,7 +207,7 @@
     let label = data.string || '';
 
     return React.createElement("div", {
-      class: "MediaBlock"
+      class: "MediaBlock snippet-embed-rte"
     }, icon, `${label}`);
   };
 
