@@ -51,7 +51,7 @@ def register_snippet_link_feature(features):
                 "icon": "snippet",
                 "description": gettext("Snippet Link"),
                 "chooserUrls": {
-                    "snippetEmbedModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-link-model"),
+                    "snippetLinkModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-link-model"),
                 },
             },
             js=js_include,
