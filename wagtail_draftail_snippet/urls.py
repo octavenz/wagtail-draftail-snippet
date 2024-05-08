@@ -19,6 +19,8 @@ urlpatterns = [
         name="choose-snippet-embed-model",
     ),
     path(
-        "choose/", chooser.ChooseView.as_view(), name="choose_generic"
+        "choose/",
+        chooser.ChooseView.as_view(),
+        name="choose_generic"
     ),  # This exists only to get the additional URL params added via JS in wagtail-draftail-snippet.js line 50
 ]

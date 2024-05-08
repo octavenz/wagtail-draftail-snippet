@@ -46,7 +46,14 @@ def register_snippet_link_feature(features):
         "draftail",
         feature_name,
         draftail_features.EntityFeature(
-            {"type": type_, "icon": "snippet", "description": gettext("Snippet Link")},
+            {
+                "type": type_,
+                "icon": "snippet",
+                "description": gettext("Snippet Link"),
+                "chooserUrls": {
+                    "snippetEmbedModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-link-model"),
+                },
+            },
             js=js_include,
         ),
     )
@@ -91,7 +98,10 @@ def register_snippet_embed_feature(features):
             {
                 "type": type_,
                 "icon": "code",
-                "description": gettext("Snippet Embed")
+                "description": gettext("Snippet Embed"),
+                "chooserUrls": {
+                    "snippetEmbedModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-embed-model")
+                },
             },
             js=js_include,
         ),
@@ -110,9 +120,7 @@ def editor_js():
     html = f"""
             <script>
                 window.chooserUrls.snippetChooser = '{reverse('wagtaildraftailsnippet:choose_generic')}';
-                window.chooserUrls.snippetLinkModelChooser = '{reverse("wagtaildraftailsnippet:choose-snippet-link-model")}';
-                window.chooserUrls.snippetEmbedModelChooser = '{reverse("wagtaildraftailsnippet:choose-snippet-embed-model")}';
-            </script>    
+            </script>
             """
 
     return format_html(html)
