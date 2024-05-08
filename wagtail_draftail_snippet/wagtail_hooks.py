@@ -52,6 +52,7 @@ def register_snippet_link_feature(features):
                 "description": gettext("Snippet Link"),
                 "chooserUrls": {
                     "snippetLinkModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-link-model"),
+                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet: choose_generic'),
                 },
             },
             js=js_include,
@@ -100,7 +101,8 @@ def register_snippet_embed_feature(features):
                 "icon": "code",
                 "description": gettext("Snippet Embed"),
                 "chooserUrls": {
-                    "snippetEmbedModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-embed-model")
+                    "snippetEmbedModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-embed-model"),
+                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet: choose_generic'),
                 },
             },
             js=js_include,
@@ -112,18 +114,6 @@ def register_snippet_embed_feature(features):
     features.register_converter_rule(
         "contentstate", feature_name, ContentstateSnippetEmbedConversionRule
     )
-
-
-@hooks.register("insert_editor_js")
-def editor_js():
-
-    html = f"""
-            <script>
-                window.chooserUrls.snippetChooser = '{reverse_lazy('wagtaildraftailsnippet:choose_generic')}';
-            </script>
-            """
-
-    return format_html(html)
 
 
 @hooks.register("register_admin_urls")
