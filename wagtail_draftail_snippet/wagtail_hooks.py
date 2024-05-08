@@ -1,12 +1,12 @@
 from django.urls import include, path
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.utils.html import format_html
 from django.utils.translation import gettext
 
 from wagtail.admin.rich_text.editors.draftail import features as draftail_features
 from wagtail import __version__
 
-# from . import urls
+from . import urls
 from .richtext import (
     ContentstateSnippetLinkConversionRule,
     ContentstateSnippetEmbedConversionRule,
@@ -51,7 +51,7 @@ def register_snippet_link_feature(features):
                 "icon": "snippet",
                 "description": gettext("Snippet Link"),
                 "chooserUrls": {
-                    "snippetLinkModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-link-model"),
+                    "snippetLinkModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-link-model"),
                 },
             },
             js=js_include,
@@ -100,7 +100,7 @@ def register_snippet_embed_feature(features):
                 "icon": "code",
                 "description": gettext("Snippet Embed"),
                 "chooserUrls": {
-                    "snippetEmbedModelChooser": reverse("wagtaildraftailsnippet:choose-snippet-embed-model")
+                    "snippetEmbedModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-embed-model")
                 },
             },
             js=js_include,
@@ -119,13 +119,13 @@ def editor_js():
 
     html = f"""
             <script>
-                window.chooserUrls.snippetChooser = '{reverse('wagtaildraftailsnippet:choose_generic')}';
+                window.chooserUrls.snippetChooser = '{reverse_lazy('wagtaildraftailsnippet:choose_generic')}';
             </script>
             """
 
     return format_html(html)
 
 
-# @hooks.register("register_admin_urls")
-# def register_admin_urls():
-#     return [path("snippets/", include(urls, namespace="wagtaildraftailsnippet"))]
+@hooks.register("register_admin_urls")
+def register_admin_urls():
+    return [path("snippets/", include(urls, namespace="wagtaildraftailsnippet"))]
