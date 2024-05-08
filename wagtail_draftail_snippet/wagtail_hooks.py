@@ -6,7 +6,7 @@ from django.utils.translation import gettext
 from wagtail.admin.rich_text.editors.draftail import features as draftail_features
 from wagtail import __version__
 
-from . import urls
+# from . import urls
 from .richtext import (
     ContentstateSnippetLinkConversionRule,
     ContentstateSnippetEmbedConversionRule,
@@ -126,6 +126,6 @@ def editor_js():
     return format_html(html)
 
 
-@hooks.register("register_admin_urls")
-def register_admin_urls():
-    return [path("snippets/", include(urls, namespace="wagtaildraftailsnippet"))]
+# @hooks.register("register_admin_urls")
+# def register_admin_urls():
+#     return [path("snippets/", include(urls, namespace="wagtaildraftailsnippet"))]
