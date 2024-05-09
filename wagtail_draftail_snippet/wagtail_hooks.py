@@ -52,7 +52,7 @@ def register_snippet_link_feature(features):
                 "description": gettext("Snippet Link"),
                 "chooserUrls": {
                     "snippetLinkModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-link-model"),
-                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet: choose_generic'),
+                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet:choose_generic'),
                 },
             },
             js=js_include,
@@ -102,7 +102,7 @@ def register_snippet_embed_feature(features):
                 "description": gettext("Snippet Embed"),
                 "chooserUrls": {
                     "snippetEmbedModelChooser": reverse_lazy("wagtaildraftailsnippet:choose-snippet-embed-model"),
-                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet: choose_generic'),
+                    "snippetChooser": reverse_lazy('wagtaildraftailsnippet:choose_generic'),
                 },
             },
             js=js_include,
