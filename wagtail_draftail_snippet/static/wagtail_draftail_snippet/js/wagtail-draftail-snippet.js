@@ -20,16 +20,22 @@
     let url;
     let urlParams;
 
+    const { snippetModelChooser } = {
+      ...this.props.entityType?.chooserUrls,
+      /** @deprecated RemovedInWagtail70 - Remove global.chooserUrls usage  */
+      ...global.chooserUrls,
+    };
+
     if (entityType.type === 'SNIPPET') {
       return {
-        url: global.chooserUrls.snippetLinkModelChooser,
+        url: snippetModelChooser,
         urlParams: {},
         onload: global.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
     }
     else if (entityType.type === 'SNIPPET-EMBED') {
       return {
-        url: global.chooserUrls.snippetEmbedModelChooser,
+        url: snippetModelChooser,
         urlParams: {},
         onload: global.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
