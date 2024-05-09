@@ -1,8 +1,17 @@
-# 0.4.3 (Unreleased)
-###### https://github.com/themotleyfool/wagtail-draftail-snippet/pull/33/files
 
+## (Unreleased)
+###### https://github.com/themotleyfool/wagtail-draftail-snippet/pull/33/files
+# 0.4.5
+Support Wagtail 6.x.
+Refactor of wagtail hooks to use the new 
+`draftail_features.EntityFeature({ ..., "chooserUrls"` 
+rather then the obsolete
+`hooks.register("insert_editor_js")` decorator.
+
+# 0.4.4
 Support Wagtail 5.x
 
+--------------------
 # 0.4.2
 
 Upgrade required version of Wagtail to >=2.15.x (feature implemented in 0.4.0)

@@ -7,8 +7,6 @@ from .views import choose_snippet_link_model, choose_snippet_embed_model
 
 app_name = "wagtaildraftailsnippet"
 
-print("LOADING the Wagtail Draftail urlpatterns")
-
 urlpatterns = [
     path(
         "choose-link-model/",
