@@ -37,12 +37,12 @@
     }
   };
 
-  const getSnippetModelObjectChooserConfig = () => {
+  const getSnippetModelObjectChooserConfig = (entity, snippetModelMeta) => {
     let url;
     let urlParams;
 
     return {
-      url: window.chooserUrls.snippetChooser.concat(window.snippetModelMeta.appName, '/', window.snippetModelMeta.modelName, '/'),
+      url: entity.chooserUrls.snippetChooser.concat(snippetModelMeta.appName, '/', snippetModelMeta.modelName, '/'),
       urlParams: {},
       onload: window.SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS,
     };
@@ -102,7 +102,7 @@
 
     onModelChosen(snippetModelMeta) {
       window.snippetModelMeta = snippetModelMeta;
-      const { url, urlParams, onload } = getSnippetModelObjectChooserConfig();
+      const { url, urlParams, onload } = getSnippetModelObjectChooserConfig(this.props.entityType, snippetModelMeta);
 
       this.model_workflow.close();
 
