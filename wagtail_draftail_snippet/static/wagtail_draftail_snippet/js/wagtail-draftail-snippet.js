@@ -14,23 +14,16 @@
   MUTABILITY['SNIPPET-EMBED'] = 'IMMUTABLE';
 
   const getSnippetModelChooserConfig = (entity) => {
-    let url;
-    let urlParams;
-
-    const { snippetModelChooser } = {
-      ...this.props.entityType?.chooserUrls,
-    };
-
     if (entity.type === 'SNIPPET') {
       return {
-        url: snippetModelChooser,
+        url: entity.chooserUrls.snippetModelChooser,
         urlParams: {},
         onload: window.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
     }
     else if (entity.type === 'SNIPPET-EMBED') {
       return {
-        url: snippetModelChooser,
+        url: entity.chooserUrls.snippetEmbedModelChooser,
         urlParams: {},
         onload: window.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
