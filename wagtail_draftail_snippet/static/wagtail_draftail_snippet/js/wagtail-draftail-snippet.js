@@ -1,43 +1,38 @@
 (() => {
   'use strict';
 
+  const $ = window.jQuery;
   const React = window.React;
   const Modifier = window.DraftJS.Modifier;
   const AtomicBlockUtils = window.DraftJS.AtomicBlockUtils;
   const RichUtils = window.DraftJS.RichUtils;
   const EditorState = window.DraftJS.EditorState;
-
   const TooltipEntity = window.draftail.TooltipEntity;
-
-  const global = globalThis;
-  const $ = global.jQuery;
 
   const MUTABILITY = {};
   MUTABILITY['SNIPPET'] = 'MUTABLE';
   MUTABILITY['SNIPPET-EMBED'] = 'IMMUTABLE';
 
-  const getSnippetModelChooserConfig = (entityType) => {
+  const getSnippetModelChooserConfig = (entity) => {
     let url;
     let urlParams;
 
     const { snippetModelChooser } = {
       ...this.props.entityType?.chooserUrls,
-      /** @deprecated RemovedInWagtail70 - Remove global.chooserUrls usage  */
-      ...global.chooserUrls,
     };
 
-    if (entityType.type === 'SNIPPET') {
+    if (entity.type === 'SNIPPET') {
       return {
         url: snippetModelChooser,
         urlParams: {},
-        onload: global.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
+        onload: window.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
     }
-    else if (entityType.type === 'SNIPPET-EMBED') {
+    else if (entity.type === 'SNIPPET-EMBED') {
       return {
         url: snippetModelChooser,
         urlParams: {},
-        onload: global.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
+        onload: window.SNIPPET_MODEL_CHOOSER_MODAL_ONLOAD_HANDLERS,
       };
     }
     else {
@@ -54,9 +49,9 @@
     let urlParams;
 
     return {
-      url: global.chooserUrls.snippetChooser.concat(window.snippetModelMeta.appName, '/', window.snippetModelMeta.modelName, '/'),
+      url: window.chooserUrls.snippetChooser.concat(window.snippetModelMeta.appName, '/', window.snippetModelMeta.modelName, '/'),
       urlParams: {},
-      onload: global.SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS,
+      onload: window.SNIPPET_CHOOSER_MODAL_ONLOAD_HANDLERS,
     };
   };
 
@@ -90,7 +85,7 @@
       $(document.body).on('hidden.bs.modal', this.onClose);
 
       // eslint-disable-next-line new-cap
-      this.model_workflow = global.ModalWorkflow({
+      this.model_workflow = window.ModalWorkflow({
         url,
         urlParams,
         onload,
@@ -99,7 +94,7 @@
         },
         onError: () => {
           // eslint-disable-next-line no-alert
-          window.alert(global.wagtailConfig.STRINGS.SERVER_ERROR);
+          window.alert(window.wagtailConfig.STRINGS.SERVER_ERROR);
           onClose();
         },
       });
@@ -119,7 +114,7 @@
       this.model_workflow.close();
 
       // eslint-disable-next-line new-cap
-      this.workflow = global.ModalWorkflow({
+      this.workflow = window.ModalWorkflow({
         url,
         urlParams,
         onload,
@@ -128,7 +123,7 @@
         },
         onError: () => {
           // eslint-disable-next-line no-alert
-          window.alert(global.wagtailConfig.STRINGS.SERVER_ERROR);
+          window.alert(window.wagtailConfig.STRINGS.SERVER_ERROR);
           onClose();
         },
       });
