@@ -1,7 +1,7 @@
 
 ## (Unreleased)
 ###### https://github.com/themotleyfool/wagtail-draftail-snippet/pull/33/files
-# 0.4.5
+# 0.4.5 (commit d7ea43b and above)
 Support Wagtail 6.x.
 Refactor of wagtail hooks to use the new 
 `draftail_features.EntityFeature({ ..., "chooserUrls"` 
